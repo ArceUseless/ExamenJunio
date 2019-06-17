@@ -1,0 +1,7 @@
+Hola
+
+//Comentario de linea
+bl/a bla bl*a
+/*
+Comentario de bloque
+*/
