@@ -45,9 +45,14 @@ public class QuitaComentarios {
     /*No se puede acceder al array args debido a que es estático, así que para hacer que
      * que el resto de métodos puedan acceder a los parámetros, usamos otro método.
     */
+    if (args.length > 2) {
+      JOptionPane.showMessageDialog(null, "ERROR: Número de parámetros incorrecto.");
+      System.exit(0);
+    }
     try {
       almacenarParametros(args[0], 1);
       almacenarParametros(args[1], 2);
+      
     }catch (ArrayIndexOutOfBoundsException e) {
       
     }
@@ -146,13 +151,24 @@ public class QuitaComentarios {
     frm.getContentPane().add(rutaOriginal);
     rutaOriginal.setColumns(10);
     rutaOriginal.setText(parametro1);
-    
+    if(parametro1 != "") {
+      try {
+        BufferedReader brp1 = new BufferedReader(new FileReader(rutaOriginal.getText()));
+        brp1.close(); 
+      }catch (FileNotFoundException e) {
+        JOptionPane.showMessageDialog(null, "ERROR: Fichero no encontrado.");
+        System.exit(0);
+      } catch (IOException e1) {
+        JOptionPane.showMessageDialog(null, "Error en la lectura del fichero.");
+        System.exit(0);
+      }   
+    }  
     JLabel lblNewLabel_1 = new JLabel("Nuevo programa");
     lblNewLabel_1.setBounds(529, 11, 123, 14);
     frm.getContentPane().add(lblNewLabel_1);
     
     //Este botón se encargará de introducir en un JTextField la ruta del fichero original
-    JButton btnNewButton_1 = new JButton("Selecciona el programa original");
+    JButton btnNewButton_1 = new JButton("Selecciona el programa");
     if(parametro1 != "") {
       btnNewButton_1.setEnabled(false);
     }else {
@@ -179,6 +195,20 @@ public class QuitaComentarios {
     frm.getContentPane().add(rutaNuevo);
     rutaNuevo.setColumns(10);
     rutaNuevo.setText(parametro2);
+    if(parametro2 != "") {
+      try {
+        BufferedReader brp2 = new BufferedReader(new FileReader(rutaNuevo.getText()));
+        brp2.close(); 
+      }catch (FileNotFoundException e) {
+        JOptionPane.showMessageDialog(null, "ERROR: Fichero no encontrado.");
+        System.exit(0);
+      } catch (IOException e1) {
+        JOptionPane.showMessageDialog(null, "Error en la lectura del fichero.");
+        System.exit(0);
+      }
+      
+    }
+    
     
     //Este botón se encargará de modificar los JTextArea y el fichero destino
     JButton btnNewButton_2 = new JButton("Ejecutar");
