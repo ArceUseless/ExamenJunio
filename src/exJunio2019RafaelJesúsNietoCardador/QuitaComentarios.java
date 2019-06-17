@@ -194,6 +194,7 @@ public class QuitaComentarios {
           ArrayList<String> arrayPrograma= new ArrayList<String>();
 
           String linea = "";
+          arrayPrograma.add("");
           while (linea != null) {
             linea = br.readLine();
             if (linea != null) {
@@ -207,9 +208,8 @@ public class QuitaComentarios {
           boolean cuentaComentariosBloque = false;
           int recuerdaLinea = 0;
           
+          
           for(int i = 0; i <arrayPrograma.size(); i++) {
-            System.out.println(i);
-            System.out.println(arrayPrograma.get(i));
             for(int j = 0; j < arrayPrograma.get(i).length(); j++) {
               if(arrayPrograma.get(i).charAt(j) == '/') {
                 if(j+1 < arrayPrograma.get(i).length()) {
@@ -235,7 +235,7 @@ public class QuitaComentarios {
             }
           }
           
-          for(int i = 0; i < arrayPrograma.size(); i++) {
+          for(int i = 1; i < arrayPrograma.size(); i++) {
             bw.write(arrayPrograma.get(i));
             bw.newLine();
           }
