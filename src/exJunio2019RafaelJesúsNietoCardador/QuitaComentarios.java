@@ -207,12 +207,15 @@ public class QuitaComentarios {
           boolean cuentaComentariosBloque = false;
           int recuerdaLinea = 0;
           
-          for(int i = 0; i < arrayPrograma.size(); i++) {
+          for(int i = 0; i <arrayPrograma.size(); i++) {
+            System.out.println(i);
+            System.out.println(arrayPrograma.get(i));
             for(int j = 0; j < arrayPrograma.get(i).length(); j++) {
               if(arrayPrograma.get(i).charAt(j) == '/') {
                 if(j+1 < arrayPrograma.get(i).length()) {
                   if(arrayPrograma.get(i).charAt(j+1) == '/' ) {
-                    arrayPrograma.set(i, "");
+                    arrayPrograma.remove(i);
+                    i--;
                   }else if(arrayPrograma.get(i).charAt(j+1) == '*') {
                       cuentaComentariosBloque = true;
                       recuerdaLinea = i;
@@ -221,10 +224,11 @@ public class QuitaComentarios {
               }else if(arrayPrograma.get(i).charAt(j) == '*') {
                 if(j+1 < arrayPrograma.get(i).length()) {
                   if(arrayPrograma.get(i).charAt(j+1) == '/' &&  cuentaComentariosBloque) {
-                    for(int k = recuerdaLinea; k < i+1;  k++) {
-                      arrayPrograma.set(k, "");
+                    for(int k = 0; k < i-recuerdaLinea+1;  k++) {
+                      arrayPrograma.remove(recuerdaLinea);
                     }
                     cuentaComentariosBloque = false;
+                    i = recuerdaLinea;
                   }
                 }
               }
