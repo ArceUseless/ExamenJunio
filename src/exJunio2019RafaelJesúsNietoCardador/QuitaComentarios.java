@@ -1,8 +1,8 @@
+package exJunio2019RafaelJesúsNietoCardador;
 /**
 * Examen Junio 2019 	
 * @author Rafael Nieto
 */
-package exJunio2019RafaelJesúsNietoCardador;
 
 import java.awt.EventQueue;
 
@@ -212,12 +212,7 @@ public class QuitaComentarios {
               if(arrayPrograma.get(i).charAt(j) == '/') {
                 if(j+1 < arrayPrograma.get(i).length()) {
                   if(arrayPrograma.get(i).charAt(j+1) == '/' ) {
-                    arrayPrograma.set(i,arrayPrograma.get(i).replaceAll("//", ""));
-                  }else if(j+2 < arrayPrograma.get(i).length()) {
-                    if(arrayPrograma.get(i).charAt(j+1) == '*' && arrayPrograma.get(i).charAt(j+2) != '*') {
-                      cuentaComentariosBloque = true;
-                      recuerdaLinea = i;
-                    }
+                    arrayPrograma.set(i, "");
                   }else if(arrayPrograma.get(i).charAt(j+1) == '*') {
                       cuentaComentariosBloque = true;
                       recuerdaLinea = i;
@@ -226,9 +221,9 @@ public class QuitaComentarios {
               }else if(arrayPrograma.get(i).charAt(j) == '*') {
                 if(j+1 < arrayPrograma.get(i).length()) {
                   if(arrayPrograma.get(i).charAt(j+1) == '/' &&  cuentaComentariosBloque) {
-                    arrayPrograma.set(recuerdaLinea,arrayPrograma.get(i).replace("/*", ""));
-                    arrayPrograma.set(recuerdaLinea,arrayPrograma.get(i).replace("*/", ""));
-                    arrayPrograma.set(i,arrayPrograma.get(i).replace("*/", ""));
+                    for(int k = recuerdaLinea; k < i+1;  k++) {
+                      arrayPrograma.set(k, "");
+                    }
                     cuentaComentariosBloque = false;
                   }
                 }
