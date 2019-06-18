@@ -46,7 +46,7 @@ public class QuitaComentarios {
      * que el resto de métodos puedan acceder a los parámetros, usamos otro método.
     */
     if (args.length > 2) {
-      JOptionPane.showMessageDialog(null, "ERROR: Número de parámetros incorrecto.");
+      JOptionPane.showMessageDialog(null, "ERROR: Numero de parametros incorrecto.");
       System.exit(0);
     }
     try {
